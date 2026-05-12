@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Smart Home Control</h1>
+
+        <div class="dashboard">
+            <div class="status-box">
+                <h3>Status Geral</h3>
+                <div id="globalLamp" class="lamp off"></div>
+                <p id="globalStatus">Todas desligadas</p>
+            </div>
+
+            <div class="control-box">
+                <h3>Controle Geral</h3>
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <button onclick="ligarTodas()" style="flex: 1; background-color: #4CAF50; color: white; padding: 10px; border-radius: 5px; border: none; cursor: pointer;">Ligar</button>
+                    <button onclick="desligarTodas()" style="flex: 1; background-color: #f44336; color: white; padding: 10px; border-radius: 5px; border: none; cursor: pointer;">Desligar</button>
+                </div>
+                <input type="range" min="0" max="100" value="0" oninput="setAllBrightness(this.value)">
+                <span id="geralValor">0%</span>
+            </div>
+        </div>
+
+        <div class="rooms">
+
+            <div class="card room" id="sala">
+                <h2>Sala</h2>
+                <div class="lamp off"></div>
+                <button onclick="toggleRoom('sala')">Ligar</button>
+                <input type="range" min="0" max="100" value="0" oninput="setBrightness('sala', this.value)">
+                <span id="salaValor">0%</span>
+            </div>
+
+            <div class="card room" id="cozinha">
+                <h2>Cozinha</h2>
+                <div class="lamp off"></div>
+                <button onclick="toggleRoom('cozinha')">Ligar</button>
+                <input type="range" min="0" max="100" value="0" oninput="setBrightness('cozinha', this.value)">
+                <span id="cozinhaValor">0%</span>
+            </div>
+
+            <div class="card room" id="quarto">
+                <h2>Quarto</h2>
+                <div class="lamp off"></div>
+                <button onclick="toggleRoom('quarto')">Ligar</button>
+                <input type="range" min="0" max="100" value="0" oninput="setBrightness('quarto', this.value)">
+                <span id="quartoValor">0%</span>
+            </div>
+
+            <!-- Novo quadrado do Banheiro adicionado aqui -->
+            <div class="card room" id="banheiro">
+                <h2>Banheiro</h2>
+                <div class="lamp off"></div>
+                <button onclick="toggleRoom('banheiro')">Ligar</button>
+                <input type="range" min="0" max="100" value="0" oninput="setBrightness('banheiro', this.value)">
+                <span id="banheiroValor">0%</span>
+            </div>
+
+            <div id="varanda" class="card room">
+                <h2>Varanda</h2>
+                <div class="lamp"></div>
+                <div class="controls">
+                    <button onclick="toggleRoom('varanda')">Ligar</button>
+                    <input type="range" min="0" max="100" value="0" onchange="setBrightness('varanda', this.value)">
+                    <span id="varandaValor">0%</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
