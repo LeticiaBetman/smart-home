@@ -4,82 +4,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Home</title>
+
+    <title>Smart Home Control</title>
+
+    <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
 
     <div class="container">
-        <h1>Smart Home Control</h1>
 
-        <div class="dashboard">
+        <header class="header">
+
+            <h1 class="main-title">
+                <i data-lucide="house"></i>
+                Smart Home Control
+            </h1>
+
+            <p class="subtitle">
+                Controle inteligente de iluminação residencial
+            </p>
+
+        </header>
+
+        <section class="dashboard">
+
             <div class="status-box">
-                <h3>Status Geral</h3>
+
+                <h3 class="section-title">
+                    <i data-lucide="activity"></i>
+                    Status Geral
+                </h3>
+
                 <div id="globalLamp" class="lamp off"></div>
-                <p id="globalStatus">Todas desligadas</p>
+
+                <p id="globalStatus">
+                    Todas desligadas
+                </p>
+
             </div>
 
             <div class="control-box">
-                <h3>Controle Geral</h3>
-                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-                    <button onclick="ligarTodas()" style="flex: 1; background-color: #4CAF50; color: white; padding: 10px; border-radius: 5px; border: none; cursor: pointer;">Ligar</button>
-                    <button onclick="desligarTodas()" style="flex: 1; background-color: #f44336; color: white; padding: 10px; border-radius: 5px; border: none; cursor: pointer;">Desligar</button>
+
+                <h3 class="section-title">
+                    <i data-lucide="sliders-horizontal"></i>
+                    Controle Geral
+                </h3>
+
+                <div class="global-buttons">
+
+                    <button class="btn-on" onclick="ligarTodas()">
+                        <i data-lucide="power"></i>
+                        Ligar
+                    </button>
+
+                    <button class="btn-off" onclick="desligarTodas()">
+                        <i data-lucide="power-off"></i>
+                        Desligar
+                    </button>
+
                 </div>
-                <input type="range" min="0" max="100" value="0" oninput="setAllBrightness(this.value)">
-                <span id="geralValor">0%</span>
+
+                <div class="brightness-control">
+
+                    <div class="brightness-header">
+
+                        <p>
+                            <i data-lucide="sun-medium"></i>
+                            Intensidade Geral
+                        </p>
+
+                        <span id="geralValor">0%</span>
+
+                    </div>
+
+                    <input type="range" min="0" max="100" value="0" oninput="setAllBrightness(this.value)">
+
+                </div>
+
             </div>
-        </div>
 
-        <div class="rooms">
+        </section>
 
+        <section class="rooms">
+
+            <!-- SALA -->
             <div class="card room" id="sala">
-                <h2>Sala</h2>
-                <div class="lamp off"></div>
-                <button onclick="toggleRoom('sala')">Ligar</button>
-                <input type="range" min="0" max="100" value="0" oninput="setBrightness('sala', this.value)">
-                <span id="salaValor">0%</span>
-            </div>
 
-            <div class="card room" id="cozinha">
-                <h2>Cozinha</h2>
-                <div class="lamp off"></div>
-                <button onclick="toggleRoom('cozinha')">Ligar</button>
-                <input type="range" min="0" max="100" value="0" oninput="setBrightness('cozinha', this.value)">
-                <span id="cozinhaValor">0%</span>
-            </div>
+                <h2 class="room-title">
+                    <i data-lucide="sofa"></i>
+                    Sala
+                </h2>
 
-            <div class="card room" id="quarto">
-                <h2>Quarto</h2>
                 <div class="lamp off"></div>
-                <button onclick="toggleRoom('quarto')">Ligar</button>
-                <input type="range" min="0" max="100" value="0" oninput="setBrightness('quarto', this.value)">
-                <span id="quartoValor">0%</span>
-            </div>
 
-            <!-- Novo quadrado do Banheiro adicionado aqui -->
-            <div class="card room" id="banheiro">
-                <h2>Banheiro</h2>
-                <div class="lamp off"></div>
-                <button onclick="toggleRoom('banheiro')">Ligar</button>
-                <input type="range" min="0" max="100" value="0" oninput="setBrightness('banheiro', this.value)">
-                <span id="banheiroValor">0%</span>
-            </div>
+                <button onclick="toggleRoom('sala')">
+                    Ligar
+                </button>
 
-            <div id="varanda" class="card room">
-                <h2>Varanda</h2>
-                <div class="lamp"></div>
-                <div class="controls">
-                    <button onclick="toggleRoom('varanda')">Ligar</button>
-                    <input type="range" min="0" max="100" value="0" onchange="setBrightness('varanda', this.value)">
-                    <span id="varandaValor">0%</span>
+                <div class="brightness-control">
+
+                    <div class="brightness-header">
+
+                        <p>
+                            <i data-lucide="sun"></i>
+                            Intensidade
+                        </p>
+
+                        <span id="salaValor">0%</span>
+
+                    </div>
+
+                    <input type="range" min="0" max="100" value="0" oninput="setBrightness('sala', this.value)">
+
                 </div>
+
             </div>
 
-        </div>
+            <!-- COZINHA -->
+            <div class="card room" id="cozinha">
+
+                <h2 class="room-title">
+                    <i data-lucide="cooking-pot"></i>
+                    Cozinha
+                </h2>
+
+                <div class="lamp off"></div>
+
+                <button onclick="toggleRoom('cozinha')">
+                    Ligar
+                </button>
+
+                <div class="brightness-control">
+
+                    <div class="brightness-header">
+
+                        <p>
+                            <i data-lucide="sun"></i>
+                            Intensidade
+                        </p>
+
+                        <span id="cozinhaValor">0%</span>
+
+                    </div>
+
+                    <input type="range" min="0" max="100" value="0" oninput="setBrightness('cozinha', this.value)">
+
+                </div>
+
+            </div>
+
+            <!-- QUARTO -->
+            <div class="card room" id="quarto">
+
+                <h2 class="room-title">
+                    <i data-lucide="bed"></i>
+                    Quarto
+                </h2>
+
+                <div class="lamp off"></div>
+
+                <button onclick="toggleRoom('quarto')">
+                    Ligar
+                </button>
+
+                <div class="brightness-control">
+
+                    <div class="brightness-header">
+
+                        <p>
+                            <i data-lucide="sun"></i>
+                            Intensidade
+                        </p>
+
+                        <span id="quartoValor">0%</span>
+
+                    </div>
+
+                    <input type="range" min="0" max="100" value="0" oninput="setBrightness('quarto', this.value)">
+
+                </div>
+
+            </div>
+
+            <!-- BANHEIRO -->
+            <div class="card room" id="banheiro">
+
+                <h2 class="room-title">
+                    <i data-lucide="bath"></i>
+                    Banheiro
+                </h2>
+
+                <div class="lamp off"></div>
+
+                <button onclick="toggleRoom('banheiro')">
+                    Ligar
+                </button>
+
+                <div class="brightness-control">
+
+                    <div class="brightness-header">
+
+                        <p>
+                            <i data-lucide="sun"></i>
+                            Intensidade
+                        </p>
+
+                        <span id="banheiroValor">0%</span>
+
+                    </div>
+
+                    <input type="range" min="0" max="100" value="0" oninput="setBrightness('banheiro', this.value)">
+
+                </div>
+
+            </div>
+
+            <!-- VARANDA -->
+            <div class="card room" id="varanda">
+
+                <h2 class="room-title">
+                    <i data-lucide="trees"></i>
+                    Varanda
+                </h2>
+
+                <div class="lamp off"></div>
+
+                <button onclick="toggleRoom('varanda')">
+                    Ligar
+                </button>
+
+                <div class="brightness-control">
+
+                    <div class="brightness-header">
+
+                        <p>
+                            <i data-lucide="sun"></i>
+                            Intensidade
+                        </p>
+
+                        <span id="varandaValor">0%</span>
+
+                    </div>
+
+                    <input type="range" min="0" max="100" value="0" oninput="setBrightness('varanda', this.value)">
+
+                </div>
+
+            </div>
+
+        </section>
+
     </div>
 
     <script src="js/script.js"></script>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
 </body>
 
 </html>

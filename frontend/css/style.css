@@ -1,3 +1,22 @@
+:root {
+    --primary: #00c6ff;
+    --primary-dark: #0072ff;
+
+    --success: #22c55e;
+    --success-dark: #16a34a;
+
+    --danger: #ef4444;
+    --danger-dark: #dc2626;
+
+    --bg-dark: #050d1a;
+    --bg-card: rgba(255, 255, 255, 0.05);
+
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+
+    --lamp-off: #1e293b;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,10 +24,16 @@
 }
 
 body {
-    font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at top, #0f2027, #050d1a);
-    color: white;
     padding: 40px;
+
+    color: white;
+
+    font-family: "Segoe UI", sans-serif;
+
+    background:
+        radial-gradient(circle at top,
+            #0f2027,
+            var(--bg-dark));
 }
 
 .container {
@@ -16,76 +41,215 @@ body {
     margin: auto;
 }
 
-h1 {
-    text-align: center;
+.header {
     margin-bottom: 40px;
-    letter-spacing: 2px;
 }
 
-.dashboard {
+.main-title {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    margin-bottom: 10px;
+
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 38px;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 15px;
+    color: var(--text-muted);
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 30px;
+
     margin-bottom: 40px;
-    flex-wrap: wrap;
 }
 
 .status-box,
-.control-box {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.05);
+.control-box,
+.card {
     padding: 25px;
+
     border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    background: var(--bg-card);
+
     backdrop-filter: blur(15px);
-    box-shadow: 0 0 25px rgba(0, 150, 255, 0.2);
+
+    box-shadow: 0 0 25px rgba(0, 150, 255, 0.15);
 }
+
+/* =========================
+   TÍTULOS
+========================= */
+
+.section-title,
+.room-title,
+.brightness-header p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-title {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.room-title {
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+/* =========================
+   GRID DOS CÔMODOS
+========================= */
 
 .rooms {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 30px;
 }
 
+/* =========================
+   CARDS
+========================= */
+
 .card {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 25px;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 20px rgba(0, 150, 255, 0.15);
-    transition: 0.3s;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-8px);
 }
 
+.card.active {
+    border: 1px solid rgba(255, 235, 59, 0.5);
+
+    box-shadow:
+        0 0 20px rgba(255, 235, 59, 0.15),
+        0 0 40px rgba(255, 235, 59, 0.08);
+}
+
+/* =========================
+   BOTÕES
+========================= */
+
+.global-buttons {
+    display: flex;
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
 button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
     width: 100%;
-    padding: 12px;
+    height: 45px;
+
     margin: 12px 0;
+
     border: none;
     border-radius: 12px;
+
     cursor: pointer;
-    background: linear-gradient(90deg, #00c6ff, #0072ff);
+
+    background:
+        linear-gradient(90deg,
+            var(--primary),
+            var(--primary-dark));
+
     color: white;
+    font-size: 14px;
     font-weight: bold;
-    transition: 0.3s;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
 }
 
 button:hover {
-    transform: scale(1.05);
+    opacity: 0.95;
+    transform: scale(1.03);
+}
+
+.btn-on {
+    background:
+        linear-gradient(90deg,
+            var(--success),
+            var(--success-dark));
+}
+
+.btn-off {
+    background:
+        linear-gradient(90deg,
+            var(--danger),
+            var(--danger-dark));
+}
+
+/* =========================
+   CONTROLE DE BRILHO
+========================= */
+
+.brightness-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+
+.brightness-header p,
+span {
+    font-size: 14px;
+    color: var(--text-secondary);
 }
 
 input[type="range"] {
     width: 100%;
+    margin-top: 10px;
+
+    cursor: pointer;
+
+    accent-color: var(--primary);
 }
+
+/* =========================
+   LÂMPADA
+========================= */
 
 .lamp {
     width: 60px;
     height: 60px;
+
+    margin-bottom: 20px;
+
     border-radius: 50%;
-    margin-bottom: 15px;
-    background: #1e293b;
-    transition: 0.4s;
+
+    background: var(--lamp-off);
+
+    transition:
+        background 0.4s ease,
+        box-shadow 0.4s ease;
 }
 
 .lamp.on {
@@ -95,12 +259,45 @@ input[type="range"] {
         0 0 60px #ffb300;
 }
 
-@media (max-width: 600px) {
-    .room-card {
-        padding: 15px;
+/* =========================
+   ÍCONES
+========================= */
+
+.main-title svg {
+    width: 28px;
+    height: 28px;
+}
+
+.section-title svg,
+.room-title svg,
+.brightness-header svg,
+button svg {
+    width: 18px;
+    height: 18px;
+
+    flex-shrink: 0;
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 900px) {
+
+    body {
+        padding: 20px;
     }
 
-    button {
-        width: 100%;
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .rooms {
+        grid-template-columns:
+            repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .main-title {
+        font-size: 30px;
     }
 }

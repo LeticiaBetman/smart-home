@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const axios = require("axios"); // Usaremos axios para falar com o Wi-Fi
+const axios = require("axios");
 
 const app = express();
 app.use(cors());
@@ -8,10 +8,7 @@ app.use(express.json());
 
 const PORT = 3000;
 
-// ================= CONFIGURAÇÃO DO ESP32 =================
-// COLOQUE AQUI O IP QUE APARECEU NO MONITOR SERIAL DO SEU ARDUINO IDE
-const ESP32_IP = "http://172.20.10.2"; 
-// =========================================================
+const ESP32_IP = "http://172.20.10.2";
 
 app.post("/comando", async (req, res) => {
     const { led_index, estado, intensidade } = req.body;
